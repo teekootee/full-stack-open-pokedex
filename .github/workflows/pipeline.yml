@@ -32,9 +32,9 @@ jobs:
       - name: version
         if : ${{ github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@1.33.0
-          DEFAULT_BUMP: patch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
       - name: deploy to Heroku
         if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12
