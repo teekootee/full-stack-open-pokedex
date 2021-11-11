@@ -35,7 +35,7 @@ jobs:
         run: echo $TEST1
       - name: testing2
         env: 
-          TEST2: ${{ !contains(toJson(github.event.commits.*.message), '[#skip]') }}
+          TEST2: ${{ contains(toJson(github.event.commits.*.message), '[#skip]') }}
         run: echo $TEST2
       - name: version
         ##if : ${{ github.event_name == 'push' }} && {{ !contains(github.event.commits.*.message, '#skip') }}
