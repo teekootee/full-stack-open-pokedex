@@ -34,3 +34,4 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}}
           healthcheck: "https://fullstack2021-osa11.herokuapp.com/health"
           checkstring: "OK"
+          rollbackonhealthcheckfailed: true
