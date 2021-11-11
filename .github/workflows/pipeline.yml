@@ -31,7 +31,7 @@ jobs:
       #     wait-on: http://localhost:5000
       - name: testing1
         env: 
-          TEST1: ${{ github.event.commits.*.message }}
+          TEST1: ${{ toJson(github.event.commits.*.message) }}
         run: echo $TEST1
       - name: testing2
         env: 
