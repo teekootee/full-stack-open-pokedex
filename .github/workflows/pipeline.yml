@@ -29,6 +29,10 @@ jobs:
       #     command: npm run test:e2e
       #     start: npm run start-prod
       #     wait-on: http://localhost:5000
+      - name: testing
+        env: 
+          TEST: ${{ !contains(github.event.commits.*.message, '#skip') }}
+        run: echo $TEST
       - name: version
         ##if : ${{ github.event_name == 'push' }} && {{ !contains(github.event.commits.*.message, '#skip') }}
         if : ${{ !contains(github.event.commits.*.message, '#skip') }}
