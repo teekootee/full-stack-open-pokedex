@@ -20,6 +20,8 @@ jobs:
         run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v2
+        CYPRESS_host: http://localhost
+        CYPRESS_port: 5000
         with:
           command: npm run test:e2e
           build: npm run build
