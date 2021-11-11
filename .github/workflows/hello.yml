@@ -2,10 +2,7 @@
 
 name: Hello world
 on:
-  push:
-    branches:
-    - main
-    - master
+  push
 jobs:
   step1:
     runs-on: ubuntu/latest
