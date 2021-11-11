@@ -16,13 +16,14 @@ jobs:
         run: npm install
       - name: lint
         run: npm run eslint
+      - name: build
+        run: npm run build
       # - name: Jest tests
       #   run: npm run test
       # - name: Cypress e2e tests
       #   uses: cypress-io/github-action@v2
       #   with:
       #     command: npm run test:e2e
-      #     build: npm run build
       #     start: npm run start-prod
       #     wait-on: http://localhost:5000
       - name: deploy to Heroku
