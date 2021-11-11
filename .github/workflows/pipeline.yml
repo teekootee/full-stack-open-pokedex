@@ -16,8 +16,8 @@ jobs:
         run: npm install
       - name: lint
         run: npm run eslint
-      - name: Jest tests
-        run: npm run test
+      # - name: Jest tests
+      #   run: npm run test
       # - name: Cypress e2e tests
       #   uses: cypress-io/github-action@v2
       #   with:
