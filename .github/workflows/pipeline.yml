@@ -13,20 +13,12 @@ jobs:
     steps:
       - uses: 8398a7/action-slack@v3
         with:
-          status: custom
-          fields: author,took
-          custom_payload: |
-            {
-              attachments: [{
-                text: `A new build by ${process.env.AS_AUTHOR} failed ${process.env.AS_TOOK}`,
-              }]
-            }
-        ##with:
-        ##  status: ${{ job.status }}
-        ##  fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          status: failure
+          ##fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          fields: repo,message
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          if: failure()
+          if: always()
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
