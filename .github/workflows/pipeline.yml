@@ -29,19 +29,19 @@ jobs:
       #     command: npm run test:e2e
       #     start: npm run start-prod
       #     wait-on: http://localhost:5000
-  #version:
-  #  runs-on: ubuntu-18.04
-  #  steps:
-  #  - uses: actions/checkout@v2
-  #  - uses: actions/setup-node@v1
-  #    with:
-  #      node-version: '12.x'
-  #  - name: version
-  #    if : ${{ !contains(github.event.head_commit.message, '#skip') }}
-  #    uses: anothrNick/github-tag-action@1.33.0
-  #    env:
-  #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #        DEFAULT_BUMP: patch
+  version:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: version
+      if : ${{ !contains(github.event.head_commit.message, '#skip') }}
+      uses: anothrNick/github-tag-action@1.33.0
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
   #deploy:
   #  runs-on: ubuntu-18.04
   #  steps:
