@@ -24,7 +24,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: failure
-          fields: repo
+          fields: repo,commit
           text: 'Build failed'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
