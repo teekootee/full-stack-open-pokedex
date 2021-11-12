@@ -20,7 +20,8 @@ jobs:
       - name: build
         run: npm run build
       - name: notify
-        if: ${{ job.status == 'failure' }}
+        #if: ${{ job.status == 'failure' }}
+        if: always()
         uses: 8398a7/action-slack@v3
         with:
           status: failure
@@ -91,7 +92,7 @@ jobs:
         ${{ !contains(github.event.head_commit.message, '#skip') }}
       run: echo "Deploy" 
     - name: notify
-      if: job.status == 'success'
+      if: ${{ job.status == 'success' }}
       uses: 8398a7/action-slack@v3
       with:
         status: custom
