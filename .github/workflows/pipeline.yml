@@ -25,7 +25,8 @@ jobs:
         with:
           status: failure
           ##fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          fields: repo,message
+          fields: repo
+          text: 'Build failed'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           if: always()
