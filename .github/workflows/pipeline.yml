@@ -81,11 +81,11 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: deploy to Heroku
-      if: |
-        ${{ github.event_name == 'push' }}
-        §§
-        ${{ !contains(github.event.head_commit.message, '#skip') }}
+    #- name: deploy to Heroku
+    #  if: |
+    #    ${{ github.event_name == 'push' }}
+    #    §§
+    #    ${{ !contains(github.event.head_commit.message, '#skip') }}
     - name: notify
       uses: 8398a7/action-slack@v3
       with:
