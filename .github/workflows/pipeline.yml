@@ -77,8 +77,7 @@ jobs:
         §§
         ${{ !contains(github.event.head_commit.message, '#skip') }}
       run: echo "Deploy"
-  notify:
-    #needs: deploy
+  notify_success:
     runs-on: ubuntu-18.04
     steps:
       - uses: 8398a7/action-slack@v3
@@ -93,4 +92,4 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: always()
+        if: success()
