@@ -26,7 +26,7 @@ jobs:
         ##  fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          if: {{ failure() }}
+          if: ${{ failure() }}
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
