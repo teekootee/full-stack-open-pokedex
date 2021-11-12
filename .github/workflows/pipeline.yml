@@ -47,12 +47,12 @@ jobs:
         run: npm run build
       - name: Jest tests
         run: npm run test
-      # - name: Cypress e2e tests
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     command: npm run test:e2e
-      #     start: npm run start-prod
-      #     wait-on: http://localhost:5000
+      - name: Cypress e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+         command: npm run test:e2e
+         start: npm run start-prod
+         wait-on: http://localhost:5000
   version:
     needs: test
     if : ${{ !contains(github.event.head_commit.message, '#skip') }}
@@ -86,11 +86,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    #- name: deploy to Heroku
-    #  if: |
-    #    ${{ github.event_name == 'push' }}
-    #    §§
-    #    ${{ !contains(github.event.head_commit.message, '#skip') }}
     - name: notify
       uses: 8398a7/action-slack@v3
       with:
