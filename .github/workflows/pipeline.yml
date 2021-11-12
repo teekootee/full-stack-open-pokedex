@@ -13,8 +13,17 @@ jobs:
     steps:
       - uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          status: custom
+          fields: author,took
+          custom_payload: |
+            {
+              attachments: [{
+                text: `A new build by ${process.env.AS_AUTHOR} failed ${process.env.AS_TOOK}`,
+              }]
+            }
+        ##with:
+        ##  status: ${{ job.status }}
+        ##  fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           if: failure()
