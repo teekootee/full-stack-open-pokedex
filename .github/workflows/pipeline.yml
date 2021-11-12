@@ -30,6 +30,8 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           if: always()
+      - name: test
+        run: echo ${{job.status}}
   test:
     needs: build
     runs-on: ubuntu-18.04
