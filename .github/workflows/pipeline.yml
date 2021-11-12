@@ -86,21 +86,18 @@ jobs:
         ${{ github.event_name == 'push' }}
         §§
         ${{ !contains(github.event.head_commit.message, '#skip') }}
-      run: echo "Deploy"
-  notify_deploy_success:
-    needs: deploy
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          fields: author,took
-          custom_payload: |
-            {
-              attachments: [{
-                text: `A new version deployed by ${process.env.AS_AUTHOR} in ${process.env.AS_TOOK}`,
-              }]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: ${{ success() }}
+      run: echo "Deploy" 
+    - name: notify
+      if: job.status == 'success'
+      uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: author,took
+        custom_payload: |
+          {
+            attachments: [{
+              text: `A new version deployed by ${process.env.AS_AUTHOR} in ${process.env.AS_TOOK}`,
+            }]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
