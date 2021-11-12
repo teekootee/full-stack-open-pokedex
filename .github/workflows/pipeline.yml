@@ -21,7 +21,7 @@ jobs:
         run: npm run build
       - name: notify
         #if: ${{ job.status == 'failure' }}
-        if: always()
+        if: success()
         uses: 8398a7/action-slack@v3
         with:
           status: failure
