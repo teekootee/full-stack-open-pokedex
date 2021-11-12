@@ -38,7 +38,7 @@ jobs:
       - name: deploy to Heroku
         if: |
           ${{ github.event_name == 'push' }}
-          &&
+          ||
           ${{ !contains(github.event.head_commit.message, '#skip') }}
         run: echo "Deploy"
      #   uses: akhileshns/heroku-deploy@v3.12.12
