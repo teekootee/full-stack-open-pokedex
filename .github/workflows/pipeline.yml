@@ -78,13 +78,19 @@ jobs:
         ${{ !contains(github.event.head_commit.message, '#skip') }}
       run: echo "Deploy"
   notify:
+    #needs: deploy
     runs-on: ubuntu-18.04
     steps:
       - uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author
-          #fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+          status: custom
+          fields: author,took
+          custom_payload: |
+            {
+              attachments: [{
+                text: `A new version deployed by ${process.env.AS_AUTHOR} in ${process.env.AS_TOOK}`,
+              }]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
         if: always()
