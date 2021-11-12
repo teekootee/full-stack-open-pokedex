@@ -49,6 +49,7 @@ jobs:
         run: npm run test
       - name: Cypress e2e tests
         uses: cypress-io/github-action@v2
+        timeout-minutes: 1
         with:
          command: npm run test:e2e
          start: npm run start-prod
