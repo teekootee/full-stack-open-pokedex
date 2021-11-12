@@ -32,6 +32,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           if: always()
       - name: test
+        if: always()
         run: echo ${{job.status}}
   test:
     needs: build
